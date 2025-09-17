@@ -323,15 +323,6 @@ function TetrisGame() {
       </div>
       
       <div className="game-container">
-        <div className="game-info">
-          <ScoreBoard 
-            score={score}
-            lines={lines}
-            level={level}
-          />
-          <NextPiece piece={nextPiece} />
-        </div>
-        
         <div className="game-main">
           <GameBoard 
             board={displayBoard}
@@ -340,13 +331,24 @@ function TetrisGame() {
           />
         </div>
         
-        <div className="game-controls">
-          <GameControls 
-            onRestart={initGame}
-            onPause={() => setIsPaused(!isPaused)}
-            isPaused={isPaused}
-            gameOver={gameOver}
-          />
+        <div className="game-sidebar">
+          <div className="game-info">
+            <ScoreBoard 
+              score={score}
+              lines={lines}
+              level={level}
+            />
+            <NextPiece piece={nextPiece} />
+          </div>
+          
+          <div className="game-controls">
+            <GameControls 
+              onRestart={initGame}
+              onPause={() => setIsPaused(!isPaused)}
+              isPaused={isPaused}
+              gameOver={gameOver}
+            />
+          </div>
         </div>
       </div>
       
