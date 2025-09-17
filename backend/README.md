@@ -1,6 +1,6 @@
-# OpenVibe Hello World Python Backend
+# Tetris Python Backend
 
-A simple Flask-based backend API for the OpenVibe Hello World application.
+A simple Flask-based backend API for the Tetris application.
 
 ## API Endpoints
 
