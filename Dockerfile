@@ -34,39 +34,17 @@ RUN npm run build
 RUN npm prune --omit=dev
 
 
-# Final stage for app image - using Ubuntu to support both nginx and python
-FROM ubuntu:22.04
-
-# Install nginx, python, and supervisor
-RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y \
-    nginx \
-    python3 \
-    python3-pip \
-    supervisor \
-    && rm -rf /var/lib/apt/lists/*
+# Final stage for app image - nginx only for frontend
+FROM nginx:alpine
 
 # Copy built React application
 COPY --from=build /app/dist /usr/share/nginx/html
 
-# Copy Python backend
-COPY backend/ /app/backend/
-WORKDIR /app/backend
-
-# Install Python dependencies
-RUN pip3 install -r requirements.txt
-
 # Copy nginx configuration
-COPY nginx.conf /etc/nginx/sites-available/default
-
-# Copy supervisor configuration
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
-# Create necessary directories
-RUN mkdir -p /var/log/supervisor
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Expose port 80
 EXPOSE 80
 
-# Start supervisor to manage both nginx and python backend
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+# Start nginx
+CMD ["nginx", "-g", "daemon off;"]
