@@ -6,7 +6,7 @@
 # - Frontend: served at / (React SPA)
 # - Backend API: served at /api/* (proxied to Python Flask app)
 
-app = 'tetris'
+app = 'rbren-tetris'
 primary_region = 'ewr'
 
 [build]
