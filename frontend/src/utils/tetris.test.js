@@ -101,14 +101,25 @@ describe('Tetris Utils', () => {
     })
 
     it('preserves piece properties except shape', () => {
-      const piece = getRandomPiece()
-      const rotated = rotatePiece(piece)
+      // Use T piece specifically since O piece looks the same when rotated
+      const tPiece = {
+        type: 'T',
+        shape: [
+          [0, 1, 0],
+          [1, 1, 1],
+          [0, 0, 0]
+        ],
+        color: '#a000f0',
+        x: 4,
+        y: 0
+      }
+      const rotated = rotatePiece(tPiece)
       
-      expect(rotated.type).toBe(piece.type)
-      expect(rotated.color).toBe(piece.color)
-      expect(rotated.x).toBe(piece.x)
-      expect(rotated.y).toBe(piece.y)
-      expect(rotated.shape).not.toEqual(piece.shape) // Shape should change
+      expect(rotated.type).toBe(tPiece.type)
+      expect(rotated.color).toBe(tPiece.color)
+      expect(rotated.x).toBe(tPiece.x)
+      expect(rotated.y).toBe(tPiece.y)
+      expect(rotated.shape).not.toEqual(tPiece.shape) // Shape should change for T piece
     })
   })
 
