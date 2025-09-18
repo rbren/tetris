@@ -69,7 +69,7 @@ jobs:
         if: steps.deployment-env.outputs.is_production == 'true'
         run: |
           # Create the production app if it doesn't exist
-          flyctl apps create tetris || true
+          flyctl apps create rbren-tetris || true
           # Deploy to production
           flyctl deploy --remote-only
         env:
