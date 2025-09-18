@@ -195,7 +195,7 @@
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .game-container {
     flex-direction: column;
     gap: 1rem;
@@ -203,20 +203,45 @@
   }
   
   .board-cell {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
   }
   
   .next-piece-cell {
-    width: 15px;
-    height: 15px;
+    width: 12px;
+    height: 12px;
   }
   
   .app-header h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
   
   .main-content {
     padding: 1rem;
+  }
+}
+
+@media (max-width: 768px) and (min-width: 481px) {
+  .game-container {
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+  
+  .board-cell {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .next-piece-cell {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .game-info {
+    min-width: 180px;
+  }
+  
+  .app-header h1 {
+    font-size: 2.2rem;
   }
 }
