@@ -90,3 +90,13 @@ public
 tmp/
 temp/__pycache__/
 *.pyc
+
+# Python backend specific
+backend/__pycache__/
+backend/.coverage
+backend/coverage.xml
+backend/htmlcov/
+backend/src/*.egg-info/
+backend/.pytest_cache/
+backend/dist/
+backend/build/
