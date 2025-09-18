@@ -1,63 +1,62 @@
 import { render, screen } from '@testing-library/react'
-import { describe, it, expect, beforeEach, vi } from 'vitest'
+import { describe, it, expect } from 'vitest'
 import App from './App'
 
-// Mock fetch globally for App tests too
-global.fetch = vi.fn()
-
 describe('App', () => {
-  beforeEach(() => {
-    // Reset fetch mock before each test
-    fetch.mockClear()
-    
-    // Mock successful API responses
-    fetch
-      .mockResolvedValueOnce({
-        ok: true,
-        json: async () => ({ message: 'Hello from the API!', endpoint: '/api/hello' })
-      })
-      .mockResolvedValueOnce({
-        ok: true,
-        json: async () => ({ status: 'healthy', service: 'Tetris Backend' })
-      })
-  })
-
-  it('renders the main layout components', () => {
+  it('renders the Tetris game header', () => {
     render(<App />)
     
-    // Check for header logo specifically
-    expect(screen.getByRole('link', { name: 'Tetris' })).toBeInTheDocument()
+    // Check for Tetris title in header
+    expect(screen.getByRole('heading', { name: 'Tetris' })).toBeInTheDocument()
     
-    // Check for home page content (default route) - updated text
-    expect(screen.getByText('Welcome to Tetris')).toBeInTheDocument()
-    expect(screen.getByText('Your React App is Running with Python Backend!')).toBeInTheDocument()
-    
-    // Check for footer
-    expect(screen.getByText('© 2025 Tetris. All rights reserved.')).toBeInTheDocument()
+    // Check for header element
+    expect(screen.getByRole('banner')).toBeInTheDocument()
   })
 
-  it('has proper navigation structure', () => {
+  it('renders the Tetris game board', () => {
     render(<App />)
     
-    // Check navigation links in header specifically
-    const nav = screen.getByRole('navigation')
-    expect(nav).toBeInTheDocument()
+    // Check for main content area
+    expect(screen.getByRole('main')).toBeInTheDocument()
     
-    // Use getAllByRole to handle multiple links with same name
-    const homeLinks = screen.getAllByRole('link', { name: 'Home' })
-    expect(homeLinks.length).toBeGreaterThan(0)
-    
-    const aboutLinks = screen.getAllByRole('link', { name: 'About' })
-    expect(aboutLinks.length).toBeGreaterThan(0)
-    
-    const contactLinks = screen.getAllByRole('link', { name: 'Contact' })
-    expect(contactLinks.length).toBeGreaterThan(0)
+    // Check for game board elements (board cells should be present)
+    const boardCells = document.querySelectorAll('.board-cell')
+    expect(boardCells.length).toBe(200) // 10x20 board = 200 cells
   })
 
-  it('renders with theme provider', () => {
+  it('renders the game info panel', () => {
+    render(<App />)
+    
+    // Check for score, level, lines headings
+    expect(screen.getByRole('heading', { name: 'Score' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Level' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Lines' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Next' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Controls' })).toBeInTheDocument()
+  })
+
+  it('renders the controls instructions', () => {
+    render(<App />)
+    
+    // Check for control instructions
+    expect(screen.getByText('← → Move')).toBeInTheDocument()
+    expect(screen.getByText('↓ Soft Drop')).toBeInTheDocument()
+    expect(screen.getByText('↑ Rotate')).toBeInTheDocument()
+    expect(screen.getByText('Space Hard Drop')).toBeInTheDocument()
+    expect(screen.getByText('P Pause')).toBeInTheDocument()
+    expect(screen.getByText('R Restart')).toBeInTheDocument()
+  })
+
+  it('has the correct CSS classes for styling', () => {
     const { container } = render(<App />)
     
-    // Check that theme class is applied
-    expect(container.querySelector('.app-theme-dark')).toBeInTheDocument()
+    // Check for main app container
+    expect(container.querySelector('.App')).toBeInTheDocument()
+    expect(container.querySelector('.app-header')).toBeInTheDocument()
+    expect(container.querySelector('.main-content')).toBeInTheDocument()
+    expect(container.querySelector('.tetris-game')).toBeInTheDocument()
+    expect(container.querySelector('.game-container')).toBeInTheDocument()
+    expect(container.querySelector('.tetris-board')).toBeInTheDocument()
+    expect(container.querySelector('.game-info')).toBeInTheDocument()
   })
 })
