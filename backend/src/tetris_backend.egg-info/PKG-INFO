@@ -1,0 +1,70 @@
+Metadata-Version: 2.4
+Name: tetris-backend
+Version: 0.1.0
+Summary: Backend API for Tetris game
+Project-URL: Homepage, https://github.com/rbren/tetris
+Project-URL: Bug Reports, https://github.com/rbren/tetris/issues
+Project-URL: Source, https://github.com/rbren/tetris
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+Requires-Dist: fastapi>=0.104.0
+Requires-Dist: uvicorn[standard]>=0.24.0
+Requires-Dist: pydantic>=2.5.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.4.0; extra == "dev"
+Requires-Dist: pytest-cov>=4.1.0; extra == "dev"
+Requires-Dist: pytest-asyncio>=0.21.0; extra == "dev"
+Requires-Dist: black>=23.0.0; extra == "dev"
+Requires-Dist: flake8>=6.0.0; extra == "dev"
+Requires-Dist: mypy>=1.7.0; extra == "dev"
+Requires-Dist: types-requests; extra == "dev"
+
+# Tetris Backend API
+
+A FastAPI-based backend for the Tetris game application.
+
+## Features
+
+- RESTful API endpoints for game management
+- Health check endpoints
+- Pydantic models for data validation
+- Comprehensive test coverage
+
+## Development
+
+### Setup
+
+```bash
+cd backend
+pip install -e ".[dev]"
+```
+
+### Running Tests
+
+```bash
+pytest
+```
+
+### Code Quality
+
+```bash
+# Format code
+black .
+
+# Lint code
+flake8 .
+
+# Type checking
+mypy .
+```
+
+## API Endpoints
+
+- `GET /` - Root endpoint with API information
+- `GET /health` - Health check
+- `GET /api/game/status` - Game status endpoint
