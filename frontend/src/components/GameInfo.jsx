@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 
 const GameInfo = ({ score, level, lines, nextPiece, gameOver, paused }) => {
   return (
@@ -69,6 +69,18 @@ const GameInfo = ({ score, level, lines, nextPiece, gameOver, paused }) => {
       </div>
     </div>
   );
+};
+
+GameInfo.propTypes = {
+  score: PropTypes.number.isRequired,
+  level: PropTypes.number.isRequired,
+  lines: PropTypes.number.isRequired,
+  nextPiece: PropTypes.shape({
+    shape: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)).isRequired,
+    color: PropTypes.string.isRequired
+  }),
+  gameOver: PropTypes.bool.isRequired,
+  paused: PropTypes.bool.isRequired
 };
 
 export default GameInfo;

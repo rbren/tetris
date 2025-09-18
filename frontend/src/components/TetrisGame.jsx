@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import TetrisBoard from './TetrisBoard';
 import GameInfo from './GameInfo';
 import {

@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 
 const TetrisBoard = ({ board, currentPiece }) => {
   // Create display board with current piece overlaid
@@ -37,6 +37,16 @@ const TetrisBoard = ({ board, currentPiece }) => {
       ))}
     </div>
   );
+};
+
+TetrisBoard.propTypes = {
+  board: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]))).isRequired,
+  currentPiece: PropTypes.shape({
+    shape: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)).isRequired,
+    color: PropTypes.string.isRequired,
+    x: PropTypes.number.isRequired,
+    y: PropTypes.number.isRequired
+  })
 };
 
 export default TetrisBoard;
