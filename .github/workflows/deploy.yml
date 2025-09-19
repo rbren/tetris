@@ -63,7 +63,7 @@ jobs:
         if: steps.deployment-env.outputs.is_production == 'false'
         run: |
           cp fly.toml fly-feature.toml
-          sed -i "s/app = 'tetris'/app = '${{ steps.deployment-env.outputs.app_name }}'/" fly-feature.toml
+          sed -i "s/app = 'rbren-tetris'/app = '${{ steps.deployment-env.outputs.app_name }}'/" fly-feature.toml
 
       - name: Deploy to production
         if: steps.deployment-env.outputs.is_production == 'true'
