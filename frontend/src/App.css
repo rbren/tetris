@@ -56,6 +56,7 @@
   padding: 2rem;
   border-radius: 10px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  align-items: flex-start;
 }
 
 /* Tetris Board Styles */
@@ -66,6 +67,7 @@
   background: #000;
   border-radius: 5px;
   overflow: hidden;
+  align-self: flex-start;
 }
 
 .board-row {
@@ -73,8 +75,8 @@
 }
 
 .board-cell {
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   border: 1px solid #333;
   box-sizing: border-box;
 }
@@ -137,8 +139,8 @@
 }
 
 .next-piece-cell {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   border-radius: 2px;
 }
 
@@ -205,13 +207,13 @@
   }
   
   .board-cell {
-    width: 18px;
-    height: 18px;
+    width: 22px;
+    height: 22px;
   }
   
   .next-piece-cell {
-    width: 12px;
-    height: 12px;
+    width: 16px;
+    height: 16px;
   }
   
   .app-header h1 {
@@ -230,13 +232,13 @@
   }
   
   .board-cell {
-    width: 15px;
-    height: 15px;
+    width: 18px;
+    height: 18px;
   }
   
   .next-piece-cell {
-    width: 10px;
-    height: 10px;
+    width: 14px;
+    height: 14px;
   }
   
   .app-header h1 {
